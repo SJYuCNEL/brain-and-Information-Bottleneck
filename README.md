@@ -20,7 +20,7 @@ To implement IB with deep neural networks, the maximization of equals to the min
 
 ![](framework.png)
 
-**Figure 2 ﻿Architecture of our proposed BrainIB.** BrainIB consists of three modules: subgraph generator, graph encoder, and mutual information estimation module. The subgraph generator is used to sample subgraph $\mathcal{G}_{\text{sub}}$ from the original $\mathcal{G}$. The graph encoder is used to learn graph embeddings from either $\mathcal{G}$ or $\mathcal{G}_{\text{sub}}$.The mutual information estimation module evaluates the mutual information between $\mathcal{G}$ or $\mathcal{G}_{\text{sub}}$. 
+**Figure 2 ﻿Architecture of our proposed BrainIB.** BrainIB consists of three modules: subgraph generator, graph encoder, and mutual information estimation module. The subgraph generator is used to sample subgraph $\mathcal{G}_{\text{sub}}$ from the original $\mathcal{G}$. The graph encoder is used to learn graph embeddings from either $\mathcal{G}$ or (https://latex.codecogs.com/svg.image?&space;\mathcal{G}_{\text{sub}}).The mutual information estimation module evaluates the mutual information between $\mathcal{G}$ or $\mathcal{G}_{\text{sub}}$. 
 $\max I(Y;\mathcal{G}_{\text{sub}} )-\beta I(\mathcal{G};\mathcal{G}_{\text{sub}})$,
 Where $\mathcal{G}$ is input graph.  
 $\mathcal{G}_{\text{sub}}=\mathcal{G}\odot M$,
