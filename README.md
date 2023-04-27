@@ -3,7 +3,7 @@
 **Information Bottleneck (IB) and its Objective**
 
 Given input and corresponding desired output , the overall goal of the IB principle [1] is to learn a latent representation that is maximally predictive to and contains as little information of as possible. Formally, the objective of IB can be formulated as:
-<img src="https://latex.codecogs.com/png.latex? \Large max _{p(t \mid x)} I(Y ; T)-\beta I(X ; T)">
+
 $$\max _{p(t \mid x)} I(Y ; T)-\beta I(X ; T)$$,
 
 where denotes mutual information and is a Lagrange multiplier that controls the trade-off between the **sufficiency** (the performance to down-stream task, as measured by ) and the **minimality** (the complexity of the representation, as quantified by ).
@@ -27,7 +27,7 @@ $\mathcal{G}_{\text{sub}}=\mathcal{G}\odot M$,
 where $M$ is subgraph mask, $Y$ is corresponding graph label.
 
 **Our Implementation Details**
-$\max I(Y;\mathcal{G}_{\text{sub}})\Leftrightarrow \min \mathcal{L}_{CE} (Y;\mathcal{G}_{\text{sub}})$,
+$$\max I(Y;\mathcal{G}_{\text{sub}})\Leftrightarrow \min \mathcal{L}_{CE} (Y;\mathcal{G}_{\text{sub}})$$,
 where $\mathcal{L}_{CE}$ is the cross-entropy loss.
 $I(\mathcal{G}; \mathcal{G}_{\text{sub}}) \Leftrightarrow I(Z;Z_{\text{sub}})$,
 where $Z=\varphi (\mathcal{G} )$, $\varphi$ is GIN encoder.
