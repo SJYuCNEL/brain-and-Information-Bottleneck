@@ -11,7 +11,7 @@ Given input and corresponding desired output , the overall goal of the IB princi
 ```math 
 \max _{p(t \mid x)} I(Y ; T)-\beta I(X ; T),
 ```
-where denotes mutual information and is a Lagrange multiplier that controls the trade-off between the **sufficiency** (the performance to down-stream task, as measured by ) and the **minimality** (the complexity of the representation, as quantified by ).
+where denotes mutual information and is a Lagrange multiplier that controls the trade-off between the **sufficiency** (the performance to down-stream task, as measured by $\max I(Y;T)$) and the **minimality** (the complexity of the representation, as quantified by $\min I(X;T)$).
 
 To implement IB with deep neural networks, the maximization of equals to the minimization of cross-entropy loss; whereas the minimization of differs in each method by mutual information variational or non-parametric upper bounds. **BrainIB estimates  by the matrix-based Renyi’s  α-order entropy [2，3] without any approximations or distributional assumptions.**
 
