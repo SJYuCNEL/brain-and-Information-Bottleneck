@@ -291,8 +291,9 @@ where $ \sigma $ is sigmoid function, $X$ represents node features.
     **Published:** ICASSP 2023
 
     **Details:**
+    
 ```math 
-M=\text{Gumbel_softmax}\left ( \sigma(MLP(\left [ x_{i};x_{j};e_{ij}  \right ] )) \right ),
+M=\text{Gumbel_softmax}\left ( \sigma(MLP(\left [ x_{i}; x_{j}; e_{ij}  \right ] )) \right ),
 ```
     
 where $\left [ \cdot;\cdot;\cdot  \right ]  $ is concatenation operation,  $ x_{i}$ , $x_{j}$ are node embeddings obtained from graph encoder, $e_{ij}$ is edge attribute of the input graph.
