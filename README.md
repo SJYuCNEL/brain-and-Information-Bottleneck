@@ -30,7 +30,7 @@ To implement IB with deep neural networks, the maximization of equals to the min
 \max I(Y;\mathcal{G}_{\text{sub}} )-\beta I(\mathcal{G};\mathcal{G}_{\text{sub}}),
 ```
 
-Where $ \mathcal{G} $ is input graph.  
+where $ \mathcal{G} $ is input graph.  
 
 $ \mathcal{G}_{\text{sub}}=\mathcal{G}\odot M, $
 
@@ -279,13 +279,24 @@ We provide two papers to illustrate the BrainIB:
    
     **Arxiv:** <https://arxiv.org/abs/2205.03612>
    
-    **Details:** , where is sigmoid function, represents node features.
+    **Details:** 
+    
+```math 
+M=\text{Gumbel_softmax}\left ( \sigma(MLP(X)) \right ) , 
+```
+, where $ \sigma $ is sigmoid function, $X$ represents node features.
 
 2.  **Title:** Towards a more stable and general subgraph information bottleneck
 
     **Published:** ICASSP 2023
 
-    **Details:** , where is concatenation operation,  are node embeddings obtained from graph encoder,  is edge attribute of the input graph.
+    **Details:**
+    
+    ```math 
+    M=\text{Gumbel_softmax}\left ( \sigma(MLP(\left [ x_{i};x_{j};e_{ij}  \right ] )) \right ),
+    ```
+    
+     where $\left [ \cdot;\cdot;\cdot  \right ]  $ is concatenation operation,  $ x_{i}$ , $x_{j}$ are node embeddings obtained from graph encoder, $e_{ij}$ is edge attribute of the input graph.
 
 ## Run BrainIB
 
