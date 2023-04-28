@@ -281,7 +281,9 @@ We provide two papers to illustrate the BrainIB:
    
     **Details:** 
     
-$M=\text{Gumbel_softmax}\left ( \sigma(MLP(X)) \right )$,
+```math 
+M=\text{Gumbel_softmax}\left ( \sigma(MLP(X)) \right ),
+```
 where $\sigma$ is sigmoid function, $X$ represents node features.
 
 2.  **Title:** Towards a more stable and general subgraph information bottleneck
