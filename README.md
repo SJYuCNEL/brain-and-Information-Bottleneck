@@ -35,7 +35,7 @@ $ \mathcal{G}_{\text{sub}}=\mathcal{G}\odot M, $
 where $M$ is subgraph mask, $Y$ is corresponding graph label.
 
 ## Our Implementation Details
-$ \max I(Y;\mathcal{G}_{\text{sub}})\Leftrightarrow \min \mathcal{L}_{CE} (Y;\mathcal{G}_{\text{sub}}), $
+$$ \max I(Y;\mathcal{G}_{\text{sub}})\Leftrightarrow \min \mathcal{L}_{CE} (Y;\mathcal{G}_{\text{sub}}), $$
 
 where $\mathcal{L}_{CE}$ is the cross-entropy loss.
 
