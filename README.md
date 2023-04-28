@@ -1,22 +1,26 @@
-**Brain Information Bottleneck (BrainIB)**
+<h2 align="center">
 
-**Information Bottleneck (IB) and its Objective**
+Brain Information Bottleneck (BrainIB) 🔥
+
+</h2>
+
+## Information Bottleneck (IB) and its Objective
 
 Given input and corresponding desired output , the overall goal of the IB principle [1] is to learn a latent representation that is maximally predictive to and contains as little information of as possible. Formally, the objective of IB can be formulated as:
 
-$$\max _{p(t \mid x)} I(Y ; T)-\beta I(X ; T)$$,
+$$ \max _{p(t \mid x)} I(Y ; T)-\beta I(X ; T) $$,
 
 where denotes mutual information and is a Lagrange multiplier that controls the trade-off between the **sufficiency** (the performance to down-stream task, as measured by ) and the **minimality** (the complexity of the representation, as quantified by ).
 
 To implement IB with deep neural networks, the maximization of equals to the minimization of cross-entropy loss; whereas the minimization of differs in each method by mutual information variational or non-parametric upper bounds. **BrainIB estimates  by the matrix-based -order entropy [2，3] without any approximations or distributional assumptions.**
 
-**Overall framework**
+## Overall framework
 
 **![](overall.png)**
 
 **Figure 1 The overview of the pipeline.** The resting-state fMRI raw data are preprocessed and then parcellated into regions of interest (ROIs) according to the automated anatomical labelling (AAL) atlas. The functional connectivity (FC) matrices are calculated using Pearson correlation between ROIs. From the FC we construct the brain functional graph $\mathcal{G} =\left \{ A,X\right \}$ , where $A$ is the graph adjacency matrix characterizing the graph structure (($A \in \left \{ 0,1 \right \} ^{n\times n}$) and $X$ is node feature matrix ($X \in \mathbb{R}^{n \times n}$ ). Specifically, $A$ is a binarized FC matrix, where only the top 20-percentile absolute values of the correlations of the matrix are transformed into ones, while the rest are transformed into zeros.  For node feature $X$, $X_{k}$ for node $k$ can be defined as $X_{k}=\left [ \rho_{k1},\dots, \rho_{kn}\right ] ^{\text{T}}$ , where $\rho_{kl}$ is the Pearson’s correlation coefficient for node $k$ and node $l$. Note that, we only consider functional connectivity values as node features, which is common in brain network analysis [4]. Finally, the functional graph is fed to BrainIB for psychiatric classification.
 
-**The Architecture of BrainIB**
+## The Architecture of BrainIB
 
 ![](framework.png)
 
@@ -26,13 +30,13 @@ Where $\mathcal{G}$ is input graph.
 $\mathcal{G}_{\text{sub}}=\mathcal{G}\odot M$,
 where $M$ is subgraph mask, $Y$ is corresponding graph label.
 
-**Our Implementation Details**
+## Our Implementation Details
 $$\max I(Y;\mathcal{G}_{\text{sub}})\Leftrightarrow \min \mathcal{L}_{CE} (Y;\mathcal{G}_{\text{sub}})$$,
 where $\mathcal{L}_{CE}$ is the cross-entropy loss.
 $I(\mathcal{G}; \mathcal{G}_{\text{sub}}) \Leftrightarrow I(Z;Z_{\text{sub}})$,
 where $Z=\varphi (\mathcal{G} )$, $\varphi$ is GIN encoder.
 
-**Stable Training**
+## Stable Training
 
 We use matrix-based R${\'e}$\nyi's $\alpha$-order mutual information to estimate , which significantly stabilizes the training.
 
@@ -40,22 +44,12 @@ We use matrix-based R${\'e}$\nyi's $\alpha$-order mutual information to estimate
 
 **Figure 3 Training dynamics of $I(\mathcal{G};\mathcal{G}_{\text{sub}})$(MI_loss) in SIB [5], BrainIB over 1000 epochs on REST-meta-MDD and ABIDE.** $I(\mathcal{G};\mathcal{G}_{\text{sub}})$ is the mutual information between subgraph and input graph. The training process of BrainIB is stable, while SIB suffers from an unstable training process and inaccurate estimation of mutual information between subgraph and input graph. 
 
-**Generalization Performance**
+## Generalization Performance
 
 BrainIB achieves better accuracy for the leave-one-site-out cross validation on REST-meta-MDD and ABIDE.
 
 Table 1 Leave-one-site-out cross validation on REST-meta-MDD and ABIDE. The highest performance is highlighted with bold face.
 
-<style type="text/css">
-.tg  {border-collapse:collapse;border-color:#93a1a1;border-spacing:0;}
-.tg td{background-color:#fdf6e3;border-color:#93a1a1;border-style:solid;border-width:1px;color:#002b36;
-  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg th{background-color:#657b83;border-color:#93a1a1;border-style:solid;border-width:1px;color:#fdf6e3;
-  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}
-.tg .tg-2xbj{border-color:inherit;font-size:18px;font-weight:bold;text-align:center;vertical-align:top}
-.tg .tg-7btt{border-color:inherit;font-weight:bold;text-align:center;vertical-align:top}
-</style>
 <table class="tg">
 <thead>
   <tr>
@@ -257,28 +251,31 @@ Table 1 Leave-one-site-out cross validation on REST-meta-MDD and ABIDE. The high
 </tbody>
 </table>
 
-**Interpretability analysis**
+## Interpretability analysis
 
 ![](interpretability.png)
 
-Figure 3 Comparison of explanation graph connections in brain networks of healthy controls and patients on MDD datasets. The colors of brain neural systems are described as: visual network, somatomotor network, dorsal attention network, ventral attention network, limbic network, frontoparietal network, default mode network, cerebellum and subcortial network respectively. Patients with MDD exhibits tight interactions between default mode network and limbic network, while these connections in healthy controls are much sparser.
+**Figure 4 Comparison of explanation graph connections in brain networks of healthy controls and patients on MDD datasets.** The colors of brain neural systems are described as: visual network, somatomotor network, dorsal attention network, ventral attention network, limbic network, frontoparietal network, default mode network, cerebellum and subcortial network respectively. Patients with MDD exhibits tight interactions between default mode network and limbic network, while these connections in healthy controls are much sparser.
 
-**Papers**
+## Papers
 
 We provide two papers to illustrate the BrainIB:
 
 1.  **Title:** BrainIB: Interpretable Brain Network-based Psychiatric Diagnosis with Graph Information Bottleneck
-   **Published:** IEEE Transactions on Neural Networks and Learning Systems (under major revision)
-   **Arxiv:** <https://arxiv.org/abs/2205.03612>
-   **Details:** , where is sigmoid function, represents node features.
 
-2.  **Title: Towards a more stable and general subgraph information bottleneck**
+    **Published:** IEEE Transactions on Neural Networks and Learning Systems (under major revision)
+   
+    **Arxiv:** <https://arxiv.org/abs/2205.03612>
+   
+    **Details:** , where is sigmoid function, represents node features.
+
+2.  **Title:** Towards a more stable and general subgraph information bottleneck
 
     **Published:** ICASSP 2023
 
     **Details:** , where is concatenation operation,  are node embeddings obtained from graph encoder,  is edge attribute of the input graph.
 
-**Run BrainIB**
+## Run BrainIB
 
 We provide two demos: 1) BrainIB_V1 (IEEE TNNLS [6]) on ABIDE dataset (Fig. 1 in the manuscript); and 2) BrainIB_V2 (IEEE ICASSP [7]) on ABIDE dataset.
 
@@ -300,6 +297,6 @@ in International Conference on Learning Representations, 2020
 
 [7] Liu, Hongzhi, et al. “Towards a more stable and general subgraph information bottleneck”, accepted by IEEE ICASSP-23 (oral presentation)
 
-**Questions, Suggestions, and Collaborations**
+## Questions, Suggestions, and Collaborations
 
 If you have any questions, suggestions, or would like to collaborate us on relevant topics, please feel free to contact us by [yusj9011@gmail.com](mailto:yusj9011@gmail.com) (Shujian Yu) or kzzheng@stu.xjtu.edu.cn (Kaizhong Zheng).
