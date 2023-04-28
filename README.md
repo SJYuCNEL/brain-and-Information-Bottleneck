@@ -8,17 +8,17 @@ Brain Information Bottleneck (BrainIB) 🔥
 
 Given input and corresponding desired output , the overall goal of the IB principle [1] is to learn a latent representation that is maximally predictive to and contains as little information of as possible. Formally, the objective of IB can be formulated as:
 
-$$ \max _{p(t \mid x)} I(Y ; T)-\beta I(X ; T) $$,
+$ \max _{p(t \mid x)} I(Y ; T)-\beta I(X ; T), $
 
 where denotes mutual information and is a Lagrange multiplier that controls the trade-off between the **sufficiency** (the performance to down-stream task, as measured by ) and the **minimality** (the complexity of the representation, as quantified by ).
 
-To implement IB with deep neural networks, the maximization of equals to the minimization of cross-entropy loss; whereas the minimization of differs in each method by mutual information variational or non-parametric upper bounds. **BrainIB estimates  by the matrix-based -order entropy [2，3] without any approximations or distributional assumptions.**
+To implement IB with deep neural networks, the maximization of equals to the minimization of cross-entropy loss; whereas the minimization of differs in each method by mutual information variational or non-parametric upper bounds. **BrainIB estimates  by the matrix-based Renyi’s  α-order entropy [2，3] without any approximations or distributional assumptions.**
 
 ## Overall framework
 
 **![](overall.png)**
 
-**Figure 1 The overview of the pipeline.** The resting-state fMRI raw data are preprocessed and then parcellated into regions of interest (ROIs) according to the automated anatomical labelling (AAL) atlas. The functional connectivity (FC) matrices are calculated using Pearson correlation between ROIs. From the FC we construct the brain functional graph $\mathcal{G} =\left \{ A,X\right \}$ , where $A$ is the graph adjacency matrix characterizing the graph structure (($A \in \left \{ 0,1 \right \} ^{n\times n}$) and $X$ is node feature matrix ($X \in \mathbb{R}^{n \times n}$ ). Specifically, $A$ is a binarized FC matrix, where only the top 20-percentile absolute values of the correlations of the matrix are transformed into ones, while the rest are transformed into zeros.  For node feature $X$, $X_{k}$ for node $k$ can be defined as $X_{k}=\left [ \rho_{k1},\dots, \rho_{kn}\right ] ^{\text{T}}$ , where $\rho_{kl}$ is the Pearson’s correlation coefficient for node $k$ and node $l$. Note that, we only consider functional connectivity values as node features, which is common in brain network analysis [4]. Finally, the functional graph is fed to BrainIB for psychiatric classification.
+**Figure 1 The overview of the pipeline.** The resting-state fMRI raw data are preprocessed and then parcellated into regions of interest (ROIs) according to the automated anatomical labelling (AAL) atlas. The functional connectivity (FC) matrices are calculated using Pearson correlation between ROIs. From the FC we construct the brain functional graph G = {A,X}, where A is the graph adjacency matrix characterizing the graph structure and X is node feature matrix. Specifically, A is a binarized FC matrix, where only the top 20-percentile absolute values of the correlations of the matrix are transformed into ones, while the rest are transformed into zeros.  For node feature $X$, $X_{k}$ for node $k$ can be defined as $X_{k}=\left [ \rho_{k1},\dots, \rho_{kn}\right ] ^{\text{T}}$ , where $\rho_{kl}$ is the Pearson’s correlation coefficient for node $k$ and node $l$. Note that, we only consider functional connectivity values as node features, which is common in brain network analysis [4]. Finally, the functional graph is fed to BrainIB for psychiatric classification.
 
 ## The Architecture of BrainIB
 
@@ -31,14 +31,17 @@ $\mathcal{G}_{\text{sub}}=\mathcal{G}\odot M$,
 where $M$ is subgraph mask, $Y$ is corresponding graph label.
 
 ## Our Implementation Details
-$$\max I(Y;\mathcal{G}_{\text{sub}})\Leftrightarrow \min \mathcal{L}_{CE} (Y;\mathcal{G}_{\text{sub}})$$,
+$$ \max I(Y;\mathcal{G}_{\text{sub}})\Leftrightarrow \min \mathcal{L}_{CE} (Y;\mathcal{G}_{\text{sub}}), $$
+
 where $\mathcal{L}_{CE}$ is the cross-entropy loss.
-$I(\mathcal{G}; \mathcal{G}_{\text{sub}}) \Leftrightarrow I(Z;Z_{\text{sub}})$,
+
+$$ I(\mathcal{G}; \mathcal{G}_{\text{sub}}) \Leftrightarrow I(Z;Z_{\text{sub}}), $$
+
 where $Z=\varphi (\mathcal{G} )$, $\varphi$ is GIN encoder.
 
 ## Stable Training
 
-We use matrix-based R${\'e}$\nyi's $\alpha$-order mutual information to estimate , which significantly stabilizes the training.
+We use matrix-based Renyi’s  α-order mutual information to estimate , which significantly stabilizes the training.
 
 ![](stable_training.png)
 
