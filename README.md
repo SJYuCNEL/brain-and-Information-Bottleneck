@@ -24,18 +24,22 @@ To implement IB with deep neural networks, the maximization of equals to the min
 
 ![](framework.png)
 
-**Figure 2 ﻿Architecture of our proposed BrainIB.** BrainIB consists of three modules: subgraph generator, graph encoder, and mutual information estimation module. The subgraph generator is used to sample subgraph $\mathcal{G}_{\text{sub}}$ from the original $\mathcal{G}$. The graph encoder is used to learn graph embeddings from either $\mathcal{G}$ or (https://latex.codecogs.com/svg.image?&space;\mathcal{G}_{\text{sub}}).The mutual information estimation module evaluates the mutual information between $\mathcal{G}$ or $\mathcal{G}_{\text{sub}}$. 
-$\max I(Y;\mathcal{G}_{\text{sub}} )-\beta I(\mathcal{G};\mathcal{G}_{\text{sub}})$,
-Where $\mathcal{G}$ is input graph.  
-$\mathcal{G}_{\text{sub}}=\mathcal{G}\odot M$,
+**Figure 2 ﻿Architecture of our proposed BrainIB.** BrainIB consists of three modules: subgraph generator, graph encoder, and mutual information estimation module. The subgraph generator is used to sample subgraph $ \mathcal{G}_{\text{sub}} $ from the original $ \mathcal{G} $. The graph encoder is used to learn graph embeddings from either $ \mathcal{G} $ or $ \mathcal{G}_{\text{sub}} $.The mutual information estimation module evaluates the mutual information between $ \mathcal{G} $ or $ \mathcal{G}_{\text{sub}} $. 
+
+$ \max I(Y;\mathcal{G}_{\text{sub}} )-\beta I(\mathcal{G};\mathcal{G}_{\text{sub}}), $
+
+Where $ \mathcal{G} $ is input graph.  
+
+$ \mathcal{G}_{\text{sub}}=\mathcal{G}\odot M, $
+
 where $M$ is subgraph mask, $Y$ is corresponding graph label.
 
 ## Our Implementation Details
-$$ \max I(Y;\mathcal{G}_{\text{sub}})\Leftrightarrow \min \mathcal{L}_{CE} (Y;\mathcal{G}_{\text{sub}}), $$
+$ \max I(Y;\mathcal{G}_{\text{sub}})\Leftrightarrow \min \mathcal{L}_{CE} (Y;\mathcal{G}_{\text{sub}}), $
 
 where $\mathcal{L}_{CE}$ is the cross-entropy loss.
 
-$$ I(\mathcal{G}; \mathcal{G}_{\text{sub}}) \Leftrightarrow I(Z;Z_{\text{sub}}), $$
+$ I(\mathcal{G}; \mathcal{G}_{\text{sub}}) \Leftrightarrow I(Z;Z_{\text{sub}}), $
 
 where $Z=\varphi (\mathcal{G} )$, $\varphi$ is GIN encoder.
 
