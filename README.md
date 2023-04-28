@@ -282,7 +282,7 @@ We provide two papers to illustrate the BrainIB:
     **Details:** 
     
 $M=\text{Gumbel_softmax}\left ( \sigma(MLP(X)) \right )$,
-where $ \sigma $ is sigmoid function, $X$ represents node features.
+where $\sigma$ is sigmoid function, $X$ represents node features.
 
 2.  **Title:** Towards a more stable and general subgraph information bottleneck
 
@@ -294,7 +294,7 @@ where $ \sigma $ is sigmoid function, $X$ represents node features.
 M=\text{Gumbel_softmax}\left ( \sigma(MLP(\left [ x_{i}; x_{j}; e_{ij}  \right ] )) \right ),
 ```
     
-where $\left [ \cdot;\cdot;\cdot  \right ]  $ is concatenation operation,  $ x_{i}$ , $x_{j}$ are node embeddings obtained from graph encoder, $e_{ij}$ is edge attribute of the input graph.
+where $\left[ \cdot;\cdot;\cdot  \right]  $ is concatenation operation,  $x_{i}$, $x_{j}$ are node embeddings obtained from graph encoder, $e_{ij}$ is edge attribute of the input graph.
 
 ## Run BrainIB
 
