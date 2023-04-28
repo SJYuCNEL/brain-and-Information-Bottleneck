@@ -289,7 +289,7 @@ We provide two papers to illustrate the BrainIB:
 
 ## Run BrainIB
 
-We provide two demos: 1) BrainIB_V1 (IEEE TNNLS [6]) on ABIDE dataset (Fig. 1 in the manuscript); and 2) BrainIB_V2 (IEEE ICASSP [7]) on ABIDE dataset.
+We provide two demos: 1) BrainIB_V1 (IEEE TNNLS [6]) on ABIDE dataset (Figure 1-3 in the manuscript); and 2) BrainIB_V2 (IEEE ICASSP [7]) on ABIDE dataset.
 
 [1] N. Tishby, F. C. Pereira, and W. Bialek, “The information bottleneck method,” in Proc. 37th Annual Allerton Conference on Communications, Control and Computing,
 
