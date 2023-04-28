@@ -294,7 +294,7 @@ where $\sigma$ is sigmoid function, $X$ represents node features.
 M=\text{Gumbel_softmax}\left ( \sigma(MLP(\left [ x_{i}; x_{j}; e_{ij}  \right ] )) \right ),
 ```
     
-where $\left[ \cdot;\cdot;\cdot  \right]  $ is concatenation operation,  $x_{i}$, $x_{j}$ are node embeddings obtained from graph encoder, $e_{ij}$ is edge attribute of the input graph.
+where $[ \cdot;\cdot;\cdot]  $ is the vector concatenation operation,  $x_{i}$, $x_{j}$ are node features, $e_{ij}$ is edge attribute of the input graph.
 
 ## Run BrainIB
 
