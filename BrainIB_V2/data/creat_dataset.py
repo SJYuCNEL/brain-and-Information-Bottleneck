@@ -9,7 +9,7 @@ from torch_geometric.loader import DataLoader
 
 def read_dataset():
     PATH = os.getcwd()
-    data = scio.loadmat(PATH+'/data/md_AAL_0.4.mat')
+    data = scio.loadmat(PATH+'/data/md_AAL_0.4.mat')   # Data is available at google drive (https://drive.google.com/drive/folders/1EkvBOoXF0MB2Kva9l4GQbuWX25Yp81a8?usp=sharing).
     # print(len(data['label']))
     dataset = []
     for graph_index in range(len(data['label'])):
