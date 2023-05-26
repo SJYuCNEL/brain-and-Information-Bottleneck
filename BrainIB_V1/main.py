@@ -176,7 +176,7 @@ if torch.cuda.is_available():
     torch.cuda.manual_seed_all(0)
 
 #load dataset
-graph_filename = "data/ABIDE.mat"
+graph_filename = "data/ABIDE.mat"  # Data is available at google drive (https://drive.google.com/drive/folders/1EkvBOoXF0MB2Kva9l4GQbuWX25Yp81a8?usp=sharing).
 graph1 = loadmat(graph_filename)
 graphs= load_data(graph1)
 
