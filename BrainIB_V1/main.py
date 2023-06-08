@@ -9,7 +9,7 @@ from scipy.io import loadmat
 from scipy.spatial.distance import pdist, squareform
 
 from utilis import calculate_MI
-from data.creat_data import load_data, separate_data
+from data.create_data import load_data, separate_data
 from graphCNNb import GraphCNN
 from pre_subgraph import MLP_subgraph
 from sklearn.metrics import confusion_matrix
@@ -176,7 +176,7 @@ if torch.cuda.is_available():
     torch.cuda.manual_seed_all(0)
 
 #load dataset
-graph_filename = "data/ABIDE.mat"  # Data is available at google drive (https://drive.google.com/drive/folders/1EkvBOoXF0MB2Kva9l4GQbuWX25Yp81a8?usp=sharing).
+graph_filename = "data/md_AAL_0.4.mat"  # Data is available at google drive (https://drive.google.com/drive/folders/1EkvBOoXF0MB2Kva9l4GQbuWX25Yp81a8?usp=sharing).
 graph1 = loadmat(graph_filename)
 graphs= load_data(graph1)
 
