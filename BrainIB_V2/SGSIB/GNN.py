@@ -13,12 +13,9 @@ class GNN(nn.Module):
         self.num_of_features = num_of_features
         self.first_gcn_dimensions = 128
         self.second_gcn_dimensions = 128
-        
         self.SOPOOL_dim_1 = 32
         self.SOPOOL_dim_2 = 32
-
         self.linear_hidden_dimensions = 32
-
         self.output_dimensions = 2
         
         self.device = device
@@ -37,7 +34,7 @@ class GNN(nn.Module):
         ]))
         
         self.MLP_1 = nn.Sequential(OrderedDict([
-              ("Linear_1", nn.Linear(self.SOPOOL_dim_2 ** 2, self.linear_hidden_dimensions_1)),
+              ("Linear_1", nn.Linear(self.SOPOOL_dim_2 ** 2, self.linear_hidden_dimensions)),
               ("ReLU", nn.ReLU()),
               ("Linear_2", nn.Linear(self.linear_hidden_dimensions, self.linear_hidden_dimensions)),
               ("ReLU", nn.ReLU()),

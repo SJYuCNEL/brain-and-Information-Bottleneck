@@ -13,7 +13,7 @@ from SGSIB.GNN import GNN
 from SGSIB.sub_graph_generator import MLP_subgraph
 from SGSIB.utils import train, test, separate_data
 
-from data.creat_dataset import read_dataset
+from data.create_dataset import read_dataset
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='ABIDE')
@@ -58,7 +58,7 @@ if __name__ == '__main__':
         train_dataset, test_dataset = separate_data(dataset, args.seed, fold_idx)
         
         # Instantiate the backbone network
-        model = GIN(num_of_features=num_node_features, device=device).to(device)
+        model = GNN(num_of_features=num_node_features, device=device).to(device)
         # Instantiate the subgraph generator
         SG_model = MLP_subgraph(node_features_num=num_node_features, edge_features_num=num_edge_features, device=device)
 
@@ -80,19 +80,19 @@ if __name__ == '__main__':
             acc_test_list[fold_idx] = max_acc_test
             print(f'best accuracy in epoch {epoch} (train / test): ({max_acc_train} / {max_acc_test})')
 
-            savedir = "./SGSIB/model/GCN_model" + str(fold_idx)
+            savedir = "./SGSIB/model/GNN_model" + str(fold_idx)
             if not osp.exists(savedir):
                 os.makedirs(savedir)
-            savename = savedir + "/GCN" + "_" + str(epoch) + ".tar"
+            savename = savedir + "/GNN" + "_" + str(epoch) + ".tar"
             torch.save({"epoch" : epoch, "state_dict": model.state_dict(),}, savename)
 
-            savedir = "./SGSIB/model/GCN_model" + str(fold_idx)
+            savedir = "./SGSIB/model/GNN_model" + str(fold_idx)
             if not osp.exists(savedir):
                 os.makedirs(savedir)
             savename = savedir + "/subgraph" + "_" + str(epoch) + ".tar"
             torch.save({"epoch" : epoch, "state_dict": SG_model.state_dict(),}, savename)
 
-            filename="./SGSIB/model/GCN_" + str(fold_idx) + ".txt"
+            filename="./SGSIB/model/GNN_" + str(fold_idx) + ".txt"
             if not os.path.exists(filename):
                 with open(filename, 'w') as f:
                     f.write("%f %f %f %f" % (avg_loss, acc_train, acc_test, mi_loss))
