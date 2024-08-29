@@ -276,7 +276,7 @@ We provide two papers to illustrate the BrainIB:
 
 1.  **Title:** BrainIB: Interpretable Brain Network-based Psychiatric Diagnosis with Graph Information Bottleneck
 
-    **Published:** IEEE Transactions on Neural Networks and Learning Systems (under major revision)
+    **Published:** IEEE Transactions on Neural Networks and Learning Systems (accepted)
    
     **Arxiv:** <https://arxiv.org/abs/2205.03612>
    
