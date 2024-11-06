@@ -323,6 +323,6 @@ in International Conference on Learning Representations, 2020
 
 [7] Liu, Hongzhi, et al. “Towards a more stable and general subgraph information bottleneck”, accepted by IEEE ICASSP-23 (oral presentation)
 
-## Questions, Suggestions, and Collaborations
+## Questions
 
-If you have any questions, suggestions, or would like to collaborate us on relevant topics, please feel free to contact us by [yusj9011@gmail.com](mailto:yusj9011@gmail.com) (Shujian Yu), kzzheng@stu.xjtu.edu.cn (Kaizhong Zheng for BrainIB_v1), or [lhzmeiyouyao@stu.xjtu.edu.cn](mailto:lhzmeiyouyao@stu.xjtu.edu.cn) (Hongzhi Liu for BrainIB_v2).
+If you have any questions, please feel free to contact us by [yusj9011@gmail.com](mailto:yusj9011@gmail.com) (Shujian Yu) or kzzheng@stu.xjtu.edu.cn (Kaizhong Zheng).
